@@ -53,3 +53,4 @@ docs/_build/
 # *.whl
 # *.cfg
 # lib64
+.vscode
