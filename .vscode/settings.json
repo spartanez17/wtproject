@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "/Library/Frameworks/Python.framework/Versions/3.6/bin/python3",
+    "python.pythonPath": "env/bin/python",
     "editor.formatOnSave": true,
     "python.linting.pep8Enabled": true,
     "python.linting.pylintPath": "pylint",
@@ -9,5 +9,6 @@
     "python.linting.pep8Args": ["--ignore=E501"],
     "files.exclude": {
       "**/*.pyc": true
-    }
+    },
+    "python.linting.enabled": false
   }
