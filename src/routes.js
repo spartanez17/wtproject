@@ -16,8 +16,8 @@ const BaseRouter = () => (
         component={ArticleList}
         userAuthRequired
       />
-      <AuthRoute exact path="/login/" component={Login} noAuthRequired />
-      <AuthRoute exact path="/signup/" component={Signup} noAuthRequired />
+      <AuthRoute exact path={routes.SIGN_IN} component={Login} noAuthRequired />
+      <AuthRoute exact path={routes.SIGN_UP} component={Signup} noAuthRequired />
     </Switch>
   </div>
 );

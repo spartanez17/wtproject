@@ -1,5 +1,5 @@
 const routes = {
-  LOGIN: "/login/",
+  SIGN_IN: "/signin/",
   SIGN_UP: "/signup/",
   WEATHER: "/"
 };

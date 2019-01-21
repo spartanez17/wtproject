@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as actionTypes from "./actionTypes";
+import { urls } from "assets";
 
 export const authStart = () => {
   return {
@@ -7,10 +8,11 @@ export const authStart = () => {
   };
 };
 
-export const authSuccess = token => {
+export const authSuccess = (token, username) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
-    token: token
+    token: token,
+    username: username
   };
 };
 
@@ -23,6 +25,7 @@ export const authFail = error => {
 
 export const logout = () => {
   localStorage.removeItem("token");
+  localStorage.removeItem("username");
   return {
     type: actionTypes.AUTH_LOGOUT
   };
@@ -32,14 +35,16 @@ export const authLogin = (username, password) => {
   return dispatch => {
     dispatch(authStart());
     axios
-      .post("http://127.0.0.1:8000/rest-auth/login/", {
+
+      .post(urls.SIGN_IN, {
         username: username,
         password: password
       })
       .then(res => {
         const token = res.data.key;
         localStorage.setItem("token", token);
-        dispatch(authSuccess(token));
+        localStorage.setItem("username", username);
+        dispatch(authSuccess(token, username));
       })
       .catch(err => {
         dispatch(authFail(err));
@@ -51,7 +56,7 @@ export const authSignup = (username, email, password1, password2) => {
   return dispatch => {
     dispatch(authStart());
     axios
-      .post("http://127.0.0.1:8000/rest-auth/registration/", {
+      .post(urls.SIGN_UP, {
         username: username,
         email: email,
         password1: password1,
@@ -60,7 +65,8 @@ export const authSignup = (username, email, password1, password2) => {
       .then(res => {
         const token = res.data.key;
         localStorage.setItem("token", token);
-        dispatch(authSuccess(token));
+        localStorage.setItem("username", username);
+        dispatch(authSuccess(token, username));
       })
       .catch(err => {
         dispatch(authFail(err));
@@ -71,10 +77,12 @@ export const authSignup = (username, email, password1, password2) => {
 export const authCheckState = () => {
   return dispatch => {
     const token = localStorage.getItem("token");
+    const username = localStorage.getItem("username");
+
     if (token === undefined) {
       dispatch(logout());
     } else {
-      dispatch(authSuccess(token));
+      dispatch(authSuccess(token, username));
     }
   };
 };

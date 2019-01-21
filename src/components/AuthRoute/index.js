@@ -10,7 +10,7 @@ const AuthRoute = props => {
   let { redirectTo } = props;
 
   if (userAuthRequired && !token) {
-    redirectTo = redirectTo || routes.LOGIN;
+    redirectTo = redirectTo || routes.SIGN_IN;
     return <Redirect to={redirectTo} push />;
   }
 

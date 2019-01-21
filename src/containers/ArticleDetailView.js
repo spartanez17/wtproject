@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { Button, Card } from "antd";
-import CustomForm from "../components/Form";
+import Form from "../components/Form";
 
 
 class ArticleDetail extends React.Component {
@@ -40,7 +40,7 @@ class ArticleDetail extends React.Component {
         <Card title={this.state.article.title}>
           <p> {this.state.article.content} </p>
         </Card>
-        <CustomForm
+        <Form
           {...this.props}
           token={this.props.token}
           requestType="put"

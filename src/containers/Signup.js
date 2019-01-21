@@ -1,133 +1,111 @@
-import React from 'react';
-import { Form, Input, Icon, Button } from 'antd';
-import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import * as actions from '../store/actions/auth';
+import React from "react";
+import { AvForm, AvField } from "availity-reactstrap-validation";
+import { Button } from "reactstrap";
+import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
 
-const FormItem = Form.Item;
+import * as actions from "store/actions/auth";
+import { routes } from "assets";
 
-class RegistrationForm extends React.Component {
-  state = {
-    confirmDirty: false,
+const formatMessage =
+  "Your name must be composed only with letters and numbers";
+
+const lengthMessage = (min, max) =>
+  `Your name must be between ${min} and ${max} characters`;
+
+class SignupForm extends React.Component {
+  handleValidSubmit = (event, values) => {
+    this.props.onAuth(
+      values.username,
+      values.email,
+      values.password,
+      values.confpassword
+    );
+    this.props.history.push("/");
   };
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        this.props.onAuth(
-            values.userName,
-            values.email,
-            values.password,
-            values.confirm
-        );
-        this.props.history.push('/');
-      }
-    });
-  }
-
-  handleConfirmBlur = (e) => {
-    const value = e.target.value;
-    this.setState({ confirmDirty: this.state.confirmDirty || !!value });
-  }
-
-  compareToFirstPassword = (rule, value, callback) => {
-    const form = this.props.form;
-    if (value && value !== form.getFieldValue('password')) {
-      callback('Two passwords that you enter is inconsistent!');
-    } else {
-      callback();
-    }
-  }
-
-  validateToNextPassword = (rule, value, callback) => {
-    const form = this.props.form;
-    if (value && this.state.confirmDirty) {
-      form.validateFields(['confirm'], { force: true });
-    }
-    callback();
-  }
-
-
   render() {
-    const { getFieldDecorator } = this.props.form;
-
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <div className="w-50" style={{ marginLeft: "25vw" }}>
+        <AvForm onValidSubmit={this.handleValidSubmit}>
+          <AvField
+            name="username"
+            label="Username"
+            type="text"
+            errorMessage="Invalid field"
+            validate={{
+              required: { value: true, errorMessage: "Please enter a username" },
+              pattern: {
+                value: "^[A-Za-z0-9]+$",
+                errorMessage: formatMessage
+              },
+              minLength: {
+                value: 4,
+                errorMessage: lengthMessage(4, 12)
+              },
+              maxLength: {
+                value: 12,
+                errorMessage: lengthMessage(4, 12)
+              }
+            }}
+          />
 
-        <FormItem>
-            {getFieldDecorator('userName', {
-                rules: [{ required: true, message: 'Please input your username!' }],
-            })(
-                <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
-            )}
-        </FormItem>
-
-        <FormItem>
-          {getFieldDecorator('email', {
-            rules: [{
-              type: 'email', message: 'The input is not valid E-mail!',
-            }, {
-              required: true, message: 'Please input your E-mail!',
-            }],
-          })(
-            <Input prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Email" />
-          )}
-        </FormItem>
-
-        <FormItem>
-          {getFieldDecorator('password', {
-            rules: [{
-              required: true, message: 'Please input your password!',
-            }, {
-              validator: this.validateToNextPassword,
-            }],
-          })(
-            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
-          )}
-        </FormItem>
-
-        <FormItem>
-          {getFieldDecorator('confirm', {
-            rules: [{
-              required: true, message: 'Please confirm your password!',
-            }, {
-              validator: this.compareToFirstPassword,
-            }],
-          })(
-            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" onBlur={this.handleConfirmBlur} />
-          )}
-        </FormItem>
-
-        <FormItem>
-        <Button type="primary" htmlType="submit" style={{marginRight: '10px'}}>
-            Signup
-        </Button>
-        Or
-        <NavLink
-            style={{marginRight: '10px'}}
-            to='/login/'> login
-        </NavLink>
-        </FormItem>
-
-      </Form>
+          <AvField name="email" label="Email" type="email" />
+          <AvField
+            name="password"
+            label="Password"
+            type="password"
+            validate={{
+              required: {
+                value: true,
+                errorMessage: "Please enter a password"
+              },
+              pattern: {
+                value: "^[A-Za-z0-9]+$",
+                errorMessage: formatMessage
+              },
+              minLength: {
+                value: 4,
+                errorMessage: lengthMessage(4, 20)
+              },
+              maxLength: {
+                value: 20,
+                errorMessage: lengthMessage(4, 20)
+              }
+            }}
+          />
+          <AvField
+            name="confpassword"
+            label="Confirm password"
+            type="password"
+            validate={{ match: { value: "password" } }}
+          />
+          <Button type="submit" color="primary">
+            Sign up
+          </Button>
+          {" or "}
+          <NavLink to={routes.SIGN_IN}>Sign in</NavLink>
+        </AvForm>
+      </div>
     );
   }
 }
 
-const WrappedRegistrationForm = Form.create()(RegistrationForm);
-
-const mapStateToProps = (state) => {
-    return {
-        loading: state.loading,
-        error: state.error
-    }
-}
+const mapStateToProps = state => {
+  return {
+    loading: state.loading,
+    error: state.error
+  };
+};
 
 const mapDispatchToProps = dispatch => {
-    return {
-        onAuth: (username, email, password1, password2) => dispatch(actions.authSignup(username, email, password1, password2))
-    }
-}
+  return {
+    onAuth: (username, email, password1, password2) =>
+      dispatch(actions.authSignup(username, email, password1, password2))
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(WrappedRegistrationForm);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignupForm);
