@@ -23,42 +23,46 @@ class Layout extends React.Component {
   render() {
     const { isAuthenticated, username } = this.props;
     return (
-      <Container
-        className="d-flex flex-column justify-content-between"
+      <div
+        className="d-flex flex-column justify-content-between align-items-center"
         style={{ height: "100vh" }}
         fluid
       >
-        <header style={{ height: "10vh" }}>
-          <Navbar color="#FF0000" expand="md">
-            <NavbarBrand href={routes.WEATHER}>
-              <i size="9px" class="fas fa-cloud fa-2x" />
-            </NavbarBrand>
-            <NavbarToggler onClick={this.toggle} />
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                {isAuthenticated ? (
-                  <NavLink
-                    disabled
-                    href=""
-                  >{`Signed in as ${username}`}</NavLink>
-                ) : (
-                  <NavLink href={routes.SIGN_IN}>Sign in</NavLink>
-                )}
-              </NavItem>
-              <NavItem>
-                {isAuthenticated ? (
-                  <NavLink onClick={this.props.logout} href={routes.SIGN_IN}>
-                    Sign out
-                  </NavLink>
-                ) : (
-                  <NavLink href={routes.SIGN_UP}>Sign up</NavLink>
-                )}
-              </NavItem>
-            </Nav>
-          </Navbar>
+        <header className="w-100 bg-dark" style={{ height: "10%" }}>
+          <Container>
+            <Navbar color="#FF0000" expand="md">
+              <NavbarBrand href={routes.WEATHER}>
+                <i size="9px" class="fas fa-cloud fa-2x" />
+              </NavbarBrand>
+              <Nav className="align-items-center ml-auto" navbar>
+                <NavItem>
+                  {isAuthenticated ? (
+                    <NavLink
+                      disabled
+                      href=""
+                    >{`Signed in as ${username}`}</NavLink>
+                  ) : (
+                    <NavLink href={routes.SIGN_IN}>Sign in</NavLink>
+                  )}
+                </NavItem>
+                <NavItem>
+                  {isAuthenticated ? (
+                    <NavLink onClick={this.props.logout} href={routes.SIGN_IN}>
+                      Sign out
+                    </NavLink>
+                  ) : (
+                    <NavLink href={routes.SIGN_UP}>Sign up</NavLink>
+                  )}
+                </NavItem>
+              </Nav>
+            </Navbar>
+          </Container>
         </header>
-        <main style={{ padding: 24, height: "80vh" }}>
-          {this.props.children}
+        <main
+          className="mw-100"
+          style={{ width: "1080px", height: "80%" }}
+        >
+          <Container>{this.props.children}</Container>
         </main>
         <footer>
           <NavLink
@@ -68,7 +72,7 @@ class Layout extends React.Component {
             @Author
           </NavLink>
         </footer>
-      </Container>
+      </div>
     );
   }
 }

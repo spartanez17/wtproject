@@ -1,15 +1,36 @@
 import React from "react";
-import { Form, Input, Button } from "reactstrap";
+import { Container, Form, FormGroup, Input, Button } from "reactstrap";
 
-const CustomForm = props => (
-  <div>
-    <Form onSubmit={props.handleForm}>
-    
-      <Input placeholder="default" />
+class CustomForm extends React.Component {
+  state = {
+    query: ""
+  };
 
-      <Button type="submit">Submit</Button>
-    </Form>
-  </div>
-);
+  onFormSubmit = (event) => {
+    event.preventDefault();
+    this.props.handleSubmit(this.state.query)
+  };
+
+  render() {
+    return (
+      <div className="d-flex justify-content-start mw-100" style={{width:'550px'}}>
+        <Form onSubmit={this.onFormSubmit} className="w-100">
+          <FormGroup>
+            <Input
+              type="text"
+              name="query"
+              placeholder="City.."
+              value={this.state.query}
+              onChange={({ target: { value: query } }) =>
+                this.setState({ query })
+              }
+            />
+          </FormGroup>
+          <Button className="mh-50" color="primary" type="submit">Get Weather!</Button>
+        </Form>
+      </div>
+    );
+  }
+}
 
 export default CustomForm;

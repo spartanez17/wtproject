@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import AuthRoute from "components/AuthRoute/container";
-import ArticleList from "./containers/ArticleListView";
+import Main from "./containers/Main";
 import ArticleDetail from "./containers/ArticleDetailView";
 import Login from "./containers/Login";
 import Signup from "./containers/Signup";
@@ -13,7 +13,7 @@ const BaseRouter = () => (
       <AuthRoute
         exact
         path={routes.WEATHER}
-        component={ArticleList}
+        component={Main}
         userAuthRequired
       />
       <AuthRoute exact path={routes.SIGN_IN} component={Login} noAuthRequired />

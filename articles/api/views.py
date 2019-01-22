@@ -1,46 +1,14 @@
-# from rest_framework import viewsets
-
-# class ArticleViewSet(viewsets.ModelViewSet):
-#     serializer_class = ArticleSerializer
-#     queryset = Article.objects.all()
-
-from rest_framework import permissions
-from rest_framework.generics import (
-    ListAPIView,
-    RetrieveAPIView,
-    CreateAPIView,
-    DestroyAPIView,
-    UpdateAPIView
-)
-from articles.models import Article
-from .serializers import ArticleSerializer
+from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.decorators import api_view
+from django.http import HttpResponse
+import requests
 
 
-class ArticleListView(ListAPIView):
-    queryset = Article.objects.all()
-    serializer_class = ArticleSerializer
-    permission_classes = (permissions.AllowAny, )
+def weather_foo(request):
+    # print(request.auth, request.user)
+    query = request.GET.get('q', default='')
+    appid = '9b672445b6ed15370b9b60aa56725e7d'
+    r = requests.get(
+        'https://api.openweathermap.org/data/2.5/weather?q={}&appid={}'.format(query, appid))
 
-
-class ArticleDetailView(RetrieveAPIView):
-    queryset = Article.objects.all()
-    serializer_class = ArticleSerializer
-    permission_classes = (permissions.AllowAny, )
-
-
-class ArticleCreateView(CreateAPIView):
-    queryset = Article.objects.all()
-    serializer_class = ArticleSerializer
-    permission_classes = (permissions.IsAuthenticated, )
-
-
-class ArticleUpdateView(UpdateAPIView):
-    queryset = Article.objects.all()
-    serializer_class = ArticleSerializer
-    permission_classes = (permissions.IsAuthenticated, )
-
-
-class ArticleDeleteView(DestroyAPIView):
-    queryset = Article.objects.all()
-    serializer_class = ArticleSerializer
-    permission_classes = (permissions.IsAuthenticated, )
+    return HttpResponse(r.text, status=r.status_code)
