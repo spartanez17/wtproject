@@ -5,15 +5,21 @@ import WeatherWidget from "components/WeatherWidget";
 
 class Main extends React.Component {
   state = {
-    weather: {}
+    weather: {},
   };
+  //celsius
+  //kelvin
+  //fahrenheit
 
-  fetchWeather = query => {
+  fetchWeather = (query, units) => {
+    console.log(query)
+    let params = {
+      q: query,
+      units
+    };
     axios
-      .get("http://127.0.0.1:8000/api/", {
-        params: {
-          q: query
-        }
+      .get("http://127.0.0.1:8000/api/weather", {
+        params
       })
       .then(res => {
         this.setState({

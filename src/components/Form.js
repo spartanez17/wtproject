@@ -1,19 +1,47 @@
 import React from "react";
-import { Container, Form, FormGroup, Input, Button } from "reactstrap";
+import {
+  Container,
+  Form,
+  FormGroup,
+  Input,
+  Button,
+  Dropdown,
+  UncontrolledButtonDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from "reactstrap";
+
+import { units } from "assets";
 
 class CustomForm extends React.Component {
   state = {
-    query: ""
+    query: "",
+    dropdownOpen: false,
+    units: units.CELSIUS
   };
 
-  onFormSubmit = (event) => {
+  onFormSubmit = event => {
     event.preventDefault();
-    this.props.handleSubmit(this.state.query)
+    const {query, units} = this.state
+    if (query) {
+      this.props.handleSubmit({
+        query,
+        units
+      });
+    }
+  };
+
+  toggleUnits = units => {
+    this.setState({ units });
   };
 
   render() {
     return (
-      <div className="d-flex justify-content-start mw-100" style={{width:'550px'}}>
+      <div
+        className="d-flex justify-content-start mw-100"
+        style={{ width: "550px" }}
+      >
         <Form onSubmit={this.onFormSubmit} className="w-100">
           <FormGroup>
             <Input
@@ -26,7 +54,25 @@ class CustomForm extends React.Component {
               }
             />
           </FormGroup>
-          <Button className="mh-50" color="primary" type="submit">Get Weather!</Button>
+          <Button className="mh-50" color="primary" type="submit">
+            Get Weather!
+          </Button>
+          <UncontrolledButtonDropdown className="float-right w-25">
+            <DropdownToggle caret>{this.state.units}</DropdownToggle>
+            <DropdownMenu>
+              {Object.keys(units).map(key => {
+                return (
+                  <DropdownItem
+                    onClick={() => {
+                      this.toggleUnits(units[key]);
+                    }}
+                  >
+                    {key}
+                  </DropdownItem>
+                );
+              })}
+            </DropdownMenu>
+          </UncontrolledButtonDropdown>
         </Form>
       </div>
     );

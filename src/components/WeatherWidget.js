@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Form, FormGroup, Input, Button } from "reactstrap";
 
 class WeatherWidget extends React.Component {
-  
+
 
   render() {
     const { weather } = this.props;

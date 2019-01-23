@@ -1,10 +1,11 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import AuthRoute from "components/AuthRoute/container";
+
 import Main from "./containers/Main";
-import ArticleDetail from "./containers/ArticleDetailView";
 import Login from "./containers/Login";
 import Signup from "./containers/Signup";
+import AuthRoute from "components/AuthRoute/container";
+
 import { routes } from "assets";
 
 const BaseRouter = () => (
