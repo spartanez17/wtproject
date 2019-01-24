@@ -2,28 +2,40 @@ import React from "react";
 import axios from "axios";
 import CustomForm from "components/Form";
 import WeatherWidget from "components/WeatherWidget";
+import { Container, Row, Col } from "reactstrap";
+import { urls } from "assets";
 
 class Main extends React.Component {
   state = {
-    weather: {},
+    weather: {
+      desc: "descriptoin",
+      icon: "10d",
+      temp: 12,
+      humidity: "88",
+      windSpeed: 5,
+      date: 764289168,
+      country: "BY",
+      city: "Minsk",
+      units: "celsius"
+    }
   };
-  //celsius
-  //kelvin
-  //fahrenheit
 
-  fetchWeather = (query, units) => {
-    console.log(query)
+  fetchWeather = ({ query, units }) => {
+    console.log(query);
     let params = {
-      q: query,
+      query,
       units
     };
     axios
-      .get("http://127.0.0.1:8000/api/weather", {
+      .get(urls.WEATHER, {
         params
       })
       .then(res => {
+        let weather = res.data;
+        weather.units = units;
+
         this.setState({
-          weather: res.data
+          weather
         });
       })
       .catch(rej => {
@@ -33,10 +45,19 @@ class Main extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
+      <div className="w-75" style={{ margin: "0 auto" }}>
         <CustomForm handleSubmit={this.fetchWeather} />
-        <WeatherWidget weather={this.state.weather} />
-      </React.Fragment>
+        {this.state.weather ? (
+          <WeatherWidget weather={this.state.weather} />
+        ) : (
+          <Container
+            className="d-flex align-items-center justify-content-center"
+            style={{ height: "50vh", color: "gray" }}
+          >
+            <h3> Nothing to geoloc </h3>
+          </Container>
+        )}
+      </div>
     );
   }
 }

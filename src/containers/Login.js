@@ -15,6 +15,7 @@ const lengthMessage = (min, max) =>
 
 class LoginForm extends React.Component {
   handleValidSubmit = (event, values) => {
+    console.log(values)
     this.props.onAuth(values.username, values.password);
     this.props.history.push("/");
   };
@@ -23,7 +24,7 @@ class LoginForm extends React.Component {
     const { error } = this.props;
 
     return (
-      <div className="w-50" style={{ marginLeft: "25vw" }}>
+      <div className="w-50" style={{ margin: '0 auto' }}>
         <AvForm onValidSubmit={this.handleValidSubmit}>
           {error ? (
             <Alert color="danger">

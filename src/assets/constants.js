@@ -4,4 +4,10 @@ const units = {
   FAHRENHEIT: "fahrenheit"
 };
 
-export default units;
+const unitSymbols = {
+  kelvin: "K",
+  celsius: "°C",
+  fahrenheit: "°F"
+};
+
+export { units, unitSymbols };

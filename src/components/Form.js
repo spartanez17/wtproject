@@ -1,18 +1,16 @@
 import React from "react";
 import {
-  Container,
   Form,
   FormGroup,
   Input,
   Button,
-  Dropdown,
   UncontrolledButtonDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem
 } from "reactstrap";
 
-import { units } from "assets";
+import { units, unitSymbols } from "assets";
 
 class CustomForm extends React.Component {
   state = {
@@ -23,7 +21,7 @@ class CustomForm extends React.Component {
 
   onFormSubmit = event => {
     event.preventDefault();
-    const {query, units} = this.state
+    const { query, units } = this.state;
     if (query) {
       this.props.handleSubmit({
         query,
@@ -39,8 +37,8 @@ class CustomForm extends React.Component {
   render() {
     return (
       <div
-        className="d-flex justify-content-start mw-100"
-        style={{ width: "550px" }}
+        className="mw-100"
+        style={{ margin:"6% auto",width: "550px" }}
       >
         <Form onSubmit={this.onFormSubmit} className="w-100">
           <FormGroup>
@@ -63,11 +61,12 @@ class CustomForm extends React.Component {
               {Object.keys(units).map(key => {
                 return (
                   <DropdownItem
+                    key={key}
                     onClick={() => {
                       this.toggleUnits(units[key]);
                     }}
                   >
-                    {key}
+                    {unitSymbols[key]}
                   </DropdownItem>
                 );
               })}

@@ -35,18 +35,19 @@ export const authLogin = (username, password) => {
   return dispatch => {
     dispatch(authStart());
     axios
-
       .post(urls.SIGN_IN, {
         username: username,
         password: password
       })
       .then(res => {
+        console.log('response')
         const token = res.data.key;
         localStorage.setItem("token", token);
         localStorage.setItem("username", username);
         dispatch(authSuccess(token, username));
       })
       .catch(err => {
+        console.log('response')
         dispatch(authFail(err));
       });
   };

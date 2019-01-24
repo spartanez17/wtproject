@@ -16,29 +16,26 @@ def filterResponse(openweathermapResponse):
     dt = openweathermapResponse['dt']
     name = openweathermapResponse['name']
     return {
-        'description': weather['description'],
+        'desc': weather['description'],
         'icon': weather['icon'],
         'temp': main['temp'],
         'humidity': main['humidity'],
         'windSpeed': wind['speed'],
         'date': dt,
         'country': sys['country'],
-        'name': name
+        'city': name
     }
 
 
 def weather_foo(request):
-    # print(request.GET.get('q'))
-    qs = request.GET.get('q')
-    query = qs['query']
-    buff = qs.get('units')
-    print(query)
-    units = unitMap.get(buff)
-    print(units)
+
+    query = request.GET.get('query', default='loklololol')
+    units = request.GET.get('units', default='lololollool3')
+    mappedUnits = unitMap.get(units)
     appId = '9b672445b6ed15370b9b60aa56725e7d'
-    payload = {'q': query, 'appid': appId, 'units': units}
+    payload = {'q': query, 'appid': appId, 'units': mappedUnits}
     response = requests.get(WEATHER_URL, params=payload)
-
-    result = filterResponse(response.json())
-
+    # print(response)
+    print(response.json())
+    result = filterResponse(openweathermapResponse=response.json())
     return HttpResponse(json.dumps(result), status=response.status_code)

@@ -1,19 +1,15 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import {
+  // Link,
+  withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import {
-  Collapse,
   Navbar,
-  NavbarToggler,
   NavbarBrand,
   Nav,
   NavItem,
   NavLink,
-  UncontrolledDropdown,
-  Alert,
   Container,
-  Row,
-  Col
 } from "reactstrap";
 
 import * as actions from "../store/actions/auth";
@@ -26,13 +22,12 @@ class Layout extends React.Component {
       <div
         className="d-flex flex-column justify-content-between align-items-center"
         style={{ height: "100vh" }}
-        fluid
       >
         <header className="w-100 bg-dark" style={{ height: "10%" }}>
           <Container>
             <Navbar color="#FF0000" expand="md">
               <NavbarBrand href={routes.WEATHER}>
-                <i size="9px" class="fas fa-cloud fa-2x" />
+                <i class="fas fa-cloud fa-3x" />
               </NavbarBrand>
               <Nav className="align-items-center ml-auto" navbar>
                 <NavItem>
