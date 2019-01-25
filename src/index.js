@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
 import App from './App';
-import reducer from './store/reducers/auth';
+import reducer from './store/reducers';
 
 import 'bootstrap/dist/css/bootstrap.css';
 

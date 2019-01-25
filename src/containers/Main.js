@@ -1,60 +1,33 @@
 import React from "react";
 import axios from "axios";
+import { Container } from "reactstrap";
+import { connect } from "react-redux";
+
 import CustomForm from "components/Form";
 import WeatherWidget from "components/WeatherWidget";
-import { Container, Row, Col } from "reactstrap";
-import { urls } from "assets";
+import * as actions from "store/actions/weather";
+
+import { urls, units } from "assets";
 
 class Main extends React.Component {
-  state = {
-    weather: {
-      desc: "descriptoin",
-      icon: "10d",
-      temp: 12,
-      humidity: "88",
-      windSpeed: 5,
-      date: 764289168,
-      country: "BY",
-      city: "Minsk",
-      units: "celsius"
-    }
-  };
 
-  fetchWeather = ({ query, units }) => {
-    console.log(query);
-    let params = {
-      query,
-      units
-    };
-    axios
-      .get(urls.WEATHER, {
-        params
-      })
-      .then(res => {
-        let weather = res.data;
-        weather.units = units;
-
-        this.setState({
-          weather
-        });
-      })
-      .catch(rej => {
-        console.log("ERROR\n", rej);
-      });
+  fetchWeather = (query, units) => {
+    this.props.fetchWeather(query, units);
   };
 
   render() {
+    const weather = this.props || null;
     return (
       <div className="w-75" style={{ margin: "0 auto" }}>
         <CustomForm handleSubmit={this.fetchWeather} />
-        {this.state.weather ? (
-          <WeatherWidget weather={this.state.weather} />
+        {weather===null ? (
+          <WeatherWidget weather={weather} />
         ) : (
           <Container
             className="d-flex align-items-center justify-content-center"
-            style={{ height: "50vh", color: "gray" }}
+            style={{ height: "30vh", color: "gray" }}
           >
-            <h3> Nothing to geoloc </h3>
+            <h3> Nothing to geoloc. </h3>
           </Container>
         )}
       </div>
@@ -62,4 +35,22 @@ class Main extends React.Component {
   }
 }
 
-export default Main;
+const mapStateToProps = state => {
+  return {
+    weather: state.currWeather,
+    requestLoading: state.requestLoading,
+    requestError: state.requestError
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchWeather: (query, units) =>
+      dispatch(actions.fetchCurrentWeather(query, units))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Main);

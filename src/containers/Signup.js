@@ -26,13 +26,12 @@ class SignupForm extends React.Component {
 
   render() {
     return (
-      <div className="w-50" style={{ marginLeft: "25vw" }}>
+      <div className="w-50" style={{ margin: '0 auto' }}>
         <AvForm onValidSubmit={this.handleValidSubmit}>
           <AvField
             name="username"
             label="Username"
             type="text"
-            errorMessage="Invalid field"
             validate={{
               required: { value: true, errorMessage: "Please enter a username" },
               pattern: {

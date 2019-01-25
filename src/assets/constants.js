@@ -1,13 +1,7 @@
 const units = {
-  KELVIN: "kelvin",
-  CELSIUS: "celsius",
-  FAHRENHEIT: "fahrenheit"
+  KELVIN: { query: "kelvin", symb: "K", speed: "m/s" },
+  CELSIUS: { query: "celsius", symb: "°C", speed: "m/s" },
+  FAHRENHEIT: { query: "fahrenheit", symb: "°F", speed: "m/h" },
 };
 
-const unitSymbols = {
-  kelvin: "K",
-  celsius: "°C",
-  fahrenheit: "°F"
-};
-
-export { units, unitSymbols };
+export { units };

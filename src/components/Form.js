@@ -10,7 +10,7 @@ import {
   DropdownItem
 } from "reactstrap";
 
-import { units, unitSymbols } from "assets";
+import { units } from "assets";
 
 class CustomForm extends React.Component {
   state = {
@@ -23,10 +23,7 @@ class CustomForm extends React.Component {
     event.preventDefault();
     const { query, units } = this.state;
     if (query) {
-      this.props.handleSubmit({
-        query,
-        units
-      });
+      this.props.handleSubmit(query, units);
     }
   };
 
@@ -36,10 +33,7 @@ class CustomForm extends React.Component {
 
   render() {
     return (
-      <div
-        className="mw-100"
-        style={{ margin:"6% auto",width: "550px" }}
-      >
+      <div className="mw-100" style={{ margin: "6% auto", width: "550px" }}>
         <Form onSubmit={this.onFormSubmit} className="w-100">
           <FormGroup>
             <Input
@@ -55,9 +49,11 @@ class CustomForm extends React.Component {
           <Button className="mh-50" color="primary" type="submit">
             Get Weather!
           </Button>
-          <UncontrolledButtonDropdown className="float-right w-25">
-            <DropdownToggle caret>{this.state.units}</DropdownToggle>
-            <DropdownMenu>
+          <UncontrolledButtonDropdown direction="left" className="float-right">
+            <DropdownToggle caret style={{ minWidth: "3.5em" }}>
+              {this.state.units.symb}
+            </DropdownToggle>
+            <DropdownMenu className="" style={{ minWidth: "3em" }}>
               {Object.keys(units).map(key => {
                 return (
                   <DropdownItem
@@ -66,7 +62,7 @@ class CustomForm extends React.Component {
                       this.toggleUnits(units[key]);
                     }}
                   >
-                    {unitSymbols[key]}
+                    {units[key].symb}
                   </DropdownItem>
                 );
               })}
