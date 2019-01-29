@@ -1,15 +1,16 @@
 from django.http import HttpResponse
+from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.authentication import TokenAuthentication
+from rest_framework.authentication import TokenAuthentication, SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
-from rest_framework import status
-from .serializers import WeatherSerializer
+from .services.weather_service import OpenWeatherMapService
 import requests
 import json
 
 WEATHER_URL = 'https://api.openweathermap.org/data/2.5/weather'
 unitOpenWeatherMap = {'celsius': 'metric',
                       'kelvin': '', 'fahrenheit': 'imperial'}
+open_weather_service = OpenWeatherMapService()
 
 
 def filterResponse(openweathermapResponse):
@@ -32,7 +33,6 @@ def filterResponse(openweathermapResponse):
 
 
 def weather_foo(request):
-
     query = request.GET.get('query', default='')
     units = request.GET.get('units', default='')
     mapped_units = unitOpenWeatherMap.get(units)
@@ -45,16 +45,16 @@ def weather_foo(request):
 
 
 class WeatherView(APIView):
-    authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
 
     def get(self, request, format=None):
-        query_expectation = WeatherSerializer(data=request.QUERY_PARAMS)
-        if not query_expectation.is_valid():
-            return HttpResponse(
-                data=query_expectation.errors,
-                status=status.HTTP_422_UNPROCESSABLE_ENTITY
-            )
-        query = query_expectation.object
-        print(query)
-        return HttpResponse(query)
+        queries = request.query_params.dict()
+        response = open_weather_service.getWeather(**queries)
+        return Response(response)
+
+
+
+
+        # print('---')
+        # print(queries)
+        # print('---')

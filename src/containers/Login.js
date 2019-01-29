@@ -41,16 +41,16 @@ class LoginForm extends React.Component {
                 errorMessage: "Please enter a username"
               },
               pattern: {
-                value: "^[A-Za-z0-9]+$",
+                value: "^[A-Za-z0-9_]+$",
                 errorMessage: formatMessage
               },
               minLength: {
                 value: 4,
-                errorMessage: lengthMessage(4, 12)
+                errorMessage: lengthMessage(4, 20)
               },
               maxLength: {
-                value: 12,
-                errorMessage: lengthMessage(4, 12)
+                value: 20,
+                errorMessage: lengthMessage(4, 20)
               }
             }}
           />

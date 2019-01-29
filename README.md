@@ -4,7 +4,3 @@
 - 4 request service (clear view from any http work and etc.)
 
 ##additional
-
-###front
-
-- 1 add redux-form

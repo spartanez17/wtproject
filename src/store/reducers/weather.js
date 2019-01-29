@@ -13,7 +13,6 @@ const requestStart = (state, action) => {
 };
 
 const requestSuccess = (state, action) => {
-  console.log(state)
   return {
     ...state,
     requestError: null,

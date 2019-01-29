@@ -14,19 +14,27 @@ class WeatherWidget extends React.Component {
       city,
       units
     } = this.props.weather;
-    let dateObj = new Date(date);
+    let dateObj = new Date(date*1000);
 
     var options = {
+      hour12: false,
+      year: "numeric",
+      day: "numeric",
       hour: "numeric",
       minute: "numeric",
-      hour12: false,
-      month: "long",
-      day: "numeric",
+      month: "long"
     };
-    let dateFormat = dateObj.toLocaleString("en-UN", options);
+    console.log(date);
+    let dateFormat = dateObj.toLocaleTimeString("en-UN", options);
+    let day = dateObj.getDate();
+    let hour = dateObj.getHours()
+    let mounth = dateObj.getMonth();
+    let year = dateObj.getFullYear();
+    console.log(hour, day, mounth, year)
+    console.log(dateObj.getDate());
 
     return (
-      <Container className="rounded mw-100" style={{ height: "50vh",  }}>
+      <Container className="rounded mw-100" style={{ height: "50vh" }}>
         <Row>
           <Col md={{ size: 6, offset: 3 }}>
             <p className="h3 font-weight-bold">{`Weather in ${city}, ${country}`}</p>
@@ -46,12 +54,13 @@ class WeatherWidget extends React.Component {
           </Col>
           <Col className="d-flex flex-column w-100 justify-content-center align-items-start">
             <p className="h5 text-secondary">{`Humidity: ${humidity}%`}</p>
-            <p className="h5 text-secondary">{`Wind: ${windSpeed} ${units.speed}`}</p>
+            <p className="h5 text-secondary">{`Wind: ${windSpeed} ${
+              units.speed
+            }`}</p>
           </Col>
         </Row>
       </Container>
     );
   }
 }
-
 export default WeatherWidget;

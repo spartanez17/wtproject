@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import { Container } from "reactstrap";
 import { connect } from "react-redux";
 
@@ -7,20 +6,17 @@ import CustomForm from "components/Form";
 import WeatherWidget from "components/WeatherWidget";
 import * as actions from "store/actions/weather";
 
-import { urls, units } from "assets";
-
 class Main extends React.Component {
-
   fetchWeather = (query, units) => {
     this.props.fetchWeather(query, units);
   };
 
   render() {
-    const weather = this.props || null;
+    const {weather} = this.props || null;
     return (
       <div className="w-75" style={{ margin: "0 auto" }}>
         <CustomForm handleSubmit={this.fetchWeather} />
-        {weather===null ? (
+        {weather ? (
           <WeatherWidget weather={weather} />
         ) : (
           <Container

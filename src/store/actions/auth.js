@@ -40,14 +40,12 @@ export const authLogin = (username, password) => {
         password: password
       })
       .then(res => {
-        console.log('response')
         const token = res.data.key;
         localStorage.setItem("token", token);
         localStorage.setItem("username", username);
         dispatch(authSuccess(token, username));
       })
       .catch(err => {
-        console.log('response')
         dispatch(authFail(err));
       });
   };

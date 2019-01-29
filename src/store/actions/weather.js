@@ -29,6 +29,11 @@ export const fetchCurrentWeather = (query, units) => {
       query,
       units: units.query
     };
+    const token = localStorage.getItem("token");
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios
       .get(urls.WEATHER, {
         params

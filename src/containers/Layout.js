@@ -1,7 +1,8 @@
 import React from "react";
 import {
   // Link,
-  withRouter } from "react-router-dom";
+  withRouter
+} from "react-router-dom";
 import { connect } from "react-redux";
 import {
   Navbar,
@@ -9,7 +10,7 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Container,
+  Container
 } from "reactstrap";
 
 import * as actions from "../store/actions/auth";
@@ -32,6 +33,15 @@ class Layout extends React.Component {
               <Nav className="align-items-center ml-auto" navbar>
                 <NavItem>
                   {isAuthenticated ? (
+                    <NavLink onClick={this.props.logout} href={routes.SIGN_IN}>
+                      Sign out
+                    </NavLink>
+                  ) : (
+                    <NavLink href={routes.SIGN_UP}>Sign up</NavLink>
+                  )}
+                </NavItem>
+                <NavItem>
+                  {isAuthenticated ? (
                     <NavLink
                       disabled
                       href=""
@@ -40,23 +50,11 @@ class Layout extends React.Component {
                     <NavLink href={routes.SIGN_IN}>Sign in</NavLink>
                   )}
                 </NavItem>
-                <NavItem>
-                  {isAuthenticated ? (
-                    <NavLink onClick={this.props.logout} href={routes.SIGN_IN}>
-                      Sign out
-                    </NavLink>
-                  ) : (
-                    <NavLink href={routes.SIGN_UP}>Sign up</NavLink>
-                  )}
-                </NavItem>
               </Nav>
             </Navbar>
           </Container>
         </header>
-        <main
-          className="mw-100"
-          style={{ width: "1080px", height: "80%" }}
-        >
+        <main className="mw-100" style={{ width: "1080px", height: "80%" }}>
           <Container>{this.props.children}</Container>
         </main>
         <footer>
