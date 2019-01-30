@@ -57,9 +57,9 @@ export const authSignup = (username, email, password1, password2) => {
     axios
       .post(urls.SIGN_UP, {
         username: username,
-        email: email,
         password1: password1,
-        password2: password2
+        password2: password2,
+        email: email
       })
       .then(res => {
         const token = res.data.key;

@@ -8,7 +8,7 @@ class WeatherWidget extends React.Component {
       icon,
       temp,
       humidity,
-      windSpeed,
+      wind_speed,
       date,
       country,
       city,
@@ -24,14 +24,13 @@ class WeatherWidget extends React.Component {
       minute: "numeric",
       month: "long"
     };
-    console.log(date);
+
     let dateFormat = dateObj.toLocaleTimeString("en-UN", options);
     let day = dateObj.getDate();
     let hour = dateObj.getHours()
     let mounth = dateObj.getMonth();
     let year = dateObj.getFullYear();
-    console.log(hour, day, mounth, year)
-    console.log(dateObj.getDate());
+
 
     return (
       <Container className="rounded mw-100" style={{ height: "50vh" }}>
@@ -54,7 +53,7 @@ class WeatherWidget extends React.Component {
           </Col>
           <Col className="d-flex flex-column w-100 justify-content-center align-items-start">
             <p className="h5 text-secondary">{`Humidity: ${humidity}%`}</p>
-            <p className="h5 text-secondary">{`Wind: ${windSpeed} ${
+            <p className="h5 text-secondary">{`Wind: ${wind_speed} ${
               units.speed
             }`}</p>
           </Col>
