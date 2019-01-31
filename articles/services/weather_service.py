@@ -1,34 +1,29 @@
-from rest_framework import status
-from articles.models import Weather
-from django.db.models.functions import Lower
 from datetime import datetime, timedelta, time
 from django.utils import timezone
 from articles.api.serializers import ModelWeatherSerializer
 from django.conf import settings
-from django.forms.models import model_to_dict
+from articles.models import Weather
 import requests
-import json
-import pytz
 
 
 class OpenWeatherMapClient():
 
-    def makeWeatherRequest(self, q):
+    def make_weather_request(self, q):
         payload = {'q': q, 'appid': settings.APP_ID}
         response = requests.get(settings.WEATHER_URL, params=payload)
 
         if response.status_code is not 200:
             raise Warning('REQUEST FAIL')
-        result = self.filterResponse(openweathermapResponse=response.json())
+        result = self.filterResponse(open_weather_map_response=response.json())
         return result
 
-    def filterResponse(self, openweathermapResponse):
-        weather = openweathermapResponse['weather'][0]
-        main = openweathermapResponse['main']
-        wind = openweathermapResponse['wind']
-        sys = openweathermapResponse['sys']
-        dt = openweathermapResponse['dt']
-        name = openweathermapResponse['name']
+    def filter_response(self, open_weather_map_response):
+        weather = open_weather_map_response['weather'][0]
+        main = open_weather_map_response['main']
+        wind = open_weather_map_response['wind']
+        sys = open_weather_map_response['sys']
+        dt = open_weather_map_response['dt']
+        name = open_weather_map_response['name']
         return {
             'desc': weather['description'],
             'icon': weather['icon'],
@@ -48,28 +43,26 @@ def converter(o):
 class WeatherService():
     weather_cli = OpenWeatherMapClient()
 
-    def getWeather(self, query, units):
-        city = query
-        temp_units = units
+    def get_weather(self, query, units):
+
         now = timezone.now()
-        experation_time = now - timedelta(minutes=10)
+        expiration_time = now - timedelta(minutes=10)
         queryset = Weather.objects.all()
-        q = queryset.filter(city__iexact=city).filter(
-            date__range=(experation_time, now))
+        q = queryset.filter(city__iexact=query).filter(
+            date__range=(expiration_time, now))
         weather_obj = q.first()
         if weather_obj is None:
-            response = self.weather_cli.makeWeatherRequest(
-                q=city)
+            response = self.weather_cli.make_weather_request(
+                q=query)
             weather_serializer = ModelWeatherSerializer(data=response)
             if weather_serializer.is_valid():
-                weather_obj = Weather(weather_serializer.data)
+                weather_obj = Weather(**weather_serializer.data)
                 weather_obj.save()
 
         serialized_weather = ModelWeatherSerializer(instance=weather_obj)
-        print(serialized_weather.data)
-        # dict_obj = model_to_dict(weather_obj)
-        # serialized = json.dumps(dict_obj, default=converter)
-        return serialized_weather.data
+        response = serialized_weather.data
+
+        return response
 
 
 def format_weather(units, temp, wind_speed):
@@ -77,10 +70,11 @@ def format_weather(units, temp, wind_speed):
     formatted_ws = wind_speed
     if units == 'celsius':
         formatted_temp = temp - 273.15
-        formatted_ws
+
     elif units == 'fahrenheit':
         formatted_temp = (temp - 273.15) * (9 / 5) + 32,
         formatted_ws = wind_speed * 2.23694
+
     return {
         'temp': str(formatted_temp),
         'wind_speed': str(formatted_ws)
