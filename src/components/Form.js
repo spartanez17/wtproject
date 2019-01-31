@@ -16,7 +16,7 @@ class CustomForm extends React.Component {
   state = {
     query: "",
     dropdownOpen: false,
-    units: units.CELSIUS
+    units: units.KELVIN
   };
 
   onFormSubmit = event => {

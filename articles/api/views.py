@@ -1,34 +1,30 @@
 from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.authentication import TokenAuthentication, SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
-from .services.weather_service import OpenWeatherMapService
-from .serializers import WeatherSerializer
-from articles.models import Weather
+from articles.services.weather_service import WeatherService
+from .serializers import WeatherQuerySerializer, WeatherSerializer, ModelWeatherSerializer
 
+from articles.models import Weather
+from datetime import datetime
 import requests
 import json
 
 
-open_weather_service = OpenWeatherMapService()
-
-
 class WeatherView(APIView):
     permission_classes = (IsAuthenticated,)
+    model = Weather
+    q_serializer = WeatherQuerySerializer
+    w_serializer = WeatherSerializer
+    m_serializer = ModelWeatherSerializer
+    weather_service = WeatherService()
 
     def get(self, request, format=None):
-        queries = request.query_params.dict()
-        try:
-            weather_object = open_weather_service.getWeather(**queries)
-            # print(weather_object.__dict__)
-            serializer = WeatherSerializer(data=weather_object.__dict__)
-            if serializer.is_valid():
-                print(serializer.errors)
-                return Response(serializer.data, status=200)
-            else:
-                return Response(serializer.errors, status=400)
+        queries = self.q_serializer(data=request.query_params.dict())
+        if not queries.is_valid():
+            return HttpResponse(queries.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
-        except ValueError as e:
-            response = Response(e.args, status=400)
+        weather_responce = self.weather_service.getWeather(**queries.data)
+
+        return HttpResponse(weather_responce, status=status.HTTP_200_OK)

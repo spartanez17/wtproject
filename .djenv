@@ -1,0 +1,2 @@
+export APP_ID='9b672445b6ed15370b9b60aa56725e7d'
+export WEATHER_URL='https://api.openweathermap.org/data/2.5/weather'

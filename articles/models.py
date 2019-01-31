@@ -3,20 +3,6 @@ from django.utils.timezone import now
 
 
 class Weather(models.Model):
-    KELVIN = 'kelvin'
-    CELSIUS = 'celsius'
-    FAHRENHEIT = 'fahrenheit'
-    UNITS = (
-        (KELVIN, 'kelvin'),
-        (CELSIUS, 'celsius'),
-        (FAHRENHEIT, 'fahrenheit'),
-    )
-
-    units = models.CharField(
-        max_length=2,
-        choices=UNITS,
-        default=KELVIN,
-    )
 
     date = models.DateTimeField(default=now)
     country = models.CharField(max_length=120)
