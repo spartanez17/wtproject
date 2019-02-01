@@ -14,4 +14,4 @@ class Weather(models.Model):
     icon = models.CharField(max_length=120)
 
     def __str__(self):
-        return self.city
+        return self.city + str(self.date.timestamp())

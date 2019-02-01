@@ -14,23 +14,8 @@ class WeatherWidget extends React.Component {
       city,
       units
     } = this.props.weather;
-    let dateObj = new Date(date*1000);
 
-    var options = {
-      hour12: false,
-      year: "numeric",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-      month: "long"
-    };
-
-    let dateFormat = dateObj.toLocaleTimeString("en-UN", options);
-    let day = dateObj.getDate();
-    let hour = dateObj.getHours()
-    let mounth = dateObj.getMonth();
-    let year = dateObj.getFullYear();
-
+    let formatedDate = formatDate(date);
 
     return (
       <Container className="rounded mw-100" style={{ height: "50vh" }}>
@@ -49,7 +34,7 @@ class WeatherWidget extends React.Component {
               <span>{`${temp} ${units.symb}`} </span>
             </h1>
             <p className="text-secondary">{desc}</p>
-            <p className="text-secondary">{dateFormat}</p>
+            <p className="text-secondary">{formatedDate}</p>
           </Col>
           <Col className="d-flex flex-column w-100 justify-content-center align-items-start">
             <p className="h5 text-secondary">{`Humidity: ${humidity}%`}</p>
@@ -63,3 +48,16 @@ class WeatherWidget extends React.Component {
   }
 }
 export default WeatherWidget;
+
+const formatDate = timeStamp => {
+  let dateObj = new Date(timeStamp * 1000);
+  var options = {
+    hour12: false,
+    year: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    month: "long"
+  };
+  return dateObj.toLocaleTimeString("en-UN", options);
+};

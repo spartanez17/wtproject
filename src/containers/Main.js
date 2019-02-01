@@ -12,7 +12,7 @@ class Main extends React.Component {
   };
 
   render() {
-    const {weather} = this.props || null;
+    const { weather } = this.props;
     return (
       <div className="w-75" style={{ margin: "0 auto" }}>
         <CustomForm handleSubmit={this.fetchWeather} />
