@@ -31,25 +31,29 @@ class Layout extends React.Component {
                 <i class="fas fa-cloud fa-3x" />
               </NavbarBrand>
               <Nav className="align-items-center ml-auto" navbar>
-                <NavItem>
-                  {isAuthenticated ? (
+                {isAuthenticated ? (
+                  <NavItem>
                     <NavLink onClick={this.props.logout} href={routes.SIGN_IN}>
                       Sign out
                     </NavLink>
-                  ) : (
+                  </NavItem>
+                ) : (
+                  <NavItem>
                     <NavLink href={routes.SIGN_UP}>Sign up</NavLink>
-                  )}
-                </NavItem>
-                <NavItem>
-                  {isAuthenticated ? (
+                  </NavItem>
+                )}
+                {isAuthenticated ? (
+                  <NavItem>
                     <NavLink
                       disabled
                       href=""
                     >{`Signed in as ${username}`}</NavLink>
-                  ) : (
+                  </NavItem>
+                ) : (
+                  <NavItem>
                     <NavLink href={routes.SIGN_IN}>Sign in</NavLink>
-                  )}
-                </NavItem>
+                  </NavItem>
+                )}
               </Nav>
             </Navbar>
           </Container>

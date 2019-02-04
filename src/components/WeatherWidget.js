@@ -12,7 +12,8 @@ class WeatherWidget extends React.Component {
       date,
       country,
       city,
-      units
+      units,
+      is_fetched
     } = this.props.weather;
 
     let formatedDate = formatDate(date);
@@ -38,9 +39,10 @@ class WeatherWidget extends React.Component {
           </Col>
           <Col className="d-flex flex-column w-100 justify-content-center align-items-start">
             <p className="h5 text-secondary">{`Humidity: ${humidity}%`}</p>
-            <p className="h5 text-secondary">{`Wind: ${wind_speed} ${
-              units.speed
-            }`}</p>
+            <p className="h5 text-secondary">
+              {`Wind: ${wind_speed} ${units.speed}`}
+            </p>
+            <p className="h6 text-secondary">{`just fetched: ${is_fetched}`}</p>
           </Col>
         </Row>
       </Container>
