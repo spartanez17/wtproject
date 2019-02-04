@@ -1,3 +1,4 @@
-cd /home/kirill/Public/sandbox/DjReact
+cd /home/kiryl/Public/sandbox/DjReact
 source ./env/bin/activate
-python manage.py fetch_weather minsk moscow berlin lviv
+source ./.djenv
+python manage.py fetch_weather minsk moscow berlin

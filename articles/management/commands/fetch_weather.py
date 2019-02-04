@@ -28,6 +28,11 @@ class Command(BaseCommand):
             except ValidationError:
                 raise CommandError('City "%s" does not exist' % city_query)
 
-            self.weather_service.get_weather(query=city_query, exp_period_min=10)
+            self.weather_service.get_weather(
+                query=city_query, exp_period_min=10)
 
-            self.stdout.write(self.style.SUCCESS('Successfully fetched weather "%s"' % city_query))
+            self.stdout.write(self.style.SUCCESS(
+                'Successfully fetched weather "%s"' % city_query))
+            # f = open('fetch_weather.log', 'a+')
+            # f.write('Successfully fetched weather "%s"' % city_query + '\n')
+            # f.close()

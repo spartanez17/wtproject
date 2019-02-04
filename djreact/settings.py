@@ -130,6 +130,5 @@ REST_FRAMEWORK = {
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-WEATHER_URL = os.environ['WEATHER_URL']
-
 APP_ID = os.environ['APP_ID']
+WEATHER_URL = os.environ['WEATHER_URL']

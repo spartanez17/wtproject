@@ -1,6 +1,7 @@
 env
 db.*
 db.**
+fetch_weather.log
 **/*.pyc
 .vscode
 node_modules/
