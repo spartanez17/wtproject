@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12e3c5d4-f80f-4f79-b6d7-4c9e596c0e3a" name="Default Changelist" comment="weather service done">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djreact/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/djreact/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djreact/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/djreact/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fetch_weather.log" beforeDir="false" afterPath="$PROJECT_DIR$/fetch_weather.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/articles/api/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+            <state relative-caret-position="558">
+              <caret line="31" selection-start-line="31" selection-end-line="31" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
               </folding>
@@ -25,10 +30,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/articles/tests.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/articles/api/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="342">
-              <caret line="19" column="8" lean-forward="true" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="69" />
+              <caret line="19" column="8" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="69" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -37,9 +51,55 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/articles/api/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/djreact/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="8" column="38" selection-start-line="8" selection-end-line="9" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/requirements.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/requirements_1.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/djreact/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="648">
+              <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/articles/management/commands/fetch_weather.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
+            <state relative-caret-position="360">
               <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
@@ -51,7 +111,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/articles/services/open_weather_map_cli.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
+            <state relative-caret-position="18">
               <caret line="2" selection-start-line="2" selection-end-line="2" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
@@ -80,6 +140,10 @@
         <option value="$PROJECT_DIR$/articles/managment/commands/fetch_weather.py" />
         <option value="$PROJECT_DIR$/articles/management/commands/fetch_weather.py" />
         <option value="$PROJECT_DIR$/articles/services/weather_service.py" />
+        <option value="$PROJECT_DIR$/djreact/urls.py" />
+        <option value="$PROJECT_DIR$/djreact/settings.py" />
+        <option value="$PROJECT_DIR$/requirements_1.txt" />
+        <option value="$PROJECT_DIR$/requirements.txt" />
       </list>
     </option>
   </component>
@@ -94,7 +158,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -110,19 +173,13 @@
             <path>
               <item name="DjReact" type="b2602c69:ProjectViewProjectNode" />
               <item name="DjReact" type="462c0819:PsiDirectoryNode" />
-              <item name="articles" type="462c0819:PsiDirectoryNode" />
-              <item name="management" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DjReact" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DjReact" type="462c0819:PsiDirectoryNode" />
-              <item name="articles" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
+              <item name="djreact" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -190,20 +247,19 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49860725" visible="true" weight="0.13224044" />
-      <window_info id="Structure" order="1" sideWeight="0.5013928" side_tool="true" visible="true" weight="0.13224044" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8132045" visible="true" weight="0.09836066" />
+      <window_info id="Structure" order="1" sideWeight="0.18679549" side_tool="true" visible="true" weight="0.09836066" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.22462203" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32937366" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.39200863" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49945354" weight="0.22570194" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32937366" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.32937366" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50054646" side_tool="true" weight="0.22570194" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -383,9 +439,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/articles/api/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/articles/management/commands/fetch_weather.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
+        <state relative-caret-position="360">
           <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
@@ -395,7 +461,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/articles/services/open_weather_map_cli.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
+        <state relative-caret-position="18">
           <caret line="2" selection-start-line="2" selection-end-line="2" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
@@ -403,25 +469,65 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/articles/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/articles/api/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
-          <caret line="19" column="8" lean-forward="true" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="69" />
+          <caret line="19" column="8" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="69" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/articles/api/serializers.py">
+    <entry file="file://$PROJECT_DIR$/articles/api/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        <state>
           <folding>
-            <element signature="e#0#45#0" expanded="true" />
+            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/djreact/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/env/lib/python3.6/site-packages/django/urls/conf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/djreact/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="38" selection-start-line="8" selection-end-line="9" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements_1.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>

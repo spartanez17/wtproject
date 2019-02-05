@@ -17,7 +17,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -30,15 +29,15 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework.authtoken',
-    'django.contrib.sites',
+    'djoser',
+    # 'rest_auth',
+    # 'django.contrib.sites',
 
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'rest_auth.registration',
+    # 'allauth',
+    # 'allauth.account',
 
     'corsheaders',
-    'rest_auth',
+    # 'rest_auth.registration',
 
     'articles'
 ]
@@ -74,7 +73,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'djreact.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
@@ -108,27 +106,30 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
 
-
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        'rest_framework.permissions.IsAuthenticated',
     ],
-    'DEFAULT_AUTHENTICATION_CLASSES': (
+    'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-    ),
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
 
 APP_ID = os.environ['APP_ID']
 WEATHER_URL = os.environ['WEATHER_URL']
+
+DJOSER = {
+    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    'SERIALIZERS': {},
+}
